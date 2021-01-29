@@ -1,0 +1,22 @@
+
+// разновидности форм ответов на вопросы олимпиады
+form.form
+
+	// текстовое поле
+	fieldset
+		label( for="question-field-text" ) Текстовое поле
+		input( id="question-field-text" type="text" )
+
+	fieldset
+		b Множественный выбор
+		ul.list-unstyled
+			li: label #[input( type="checkbox" )] Вариант один
+			li: label #[input( type="checkbox" )] Вариант два
+			li: label #[input( type="checkbox" )] Вариант три
+
+	fieldset
+		b Одиночный выбор
+		ul.list-unstyled
+			li: label #[input( type="radio" )] Вариант один
+			li: label #[input( type="radio" )] Вариант два
+			li: label #[input( type="radio" )] Вариант три

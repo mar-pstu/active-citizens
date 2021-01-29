@@ -1,0 +1,22 @@
+extend ../layout/_section
+
+mixin fotos_item( args )
+	a.fancybox.col-xs-12.col-sm-3( href=args.foto data-fancybox="gallery" )
+		img.lazy( src="#" data-src=args.foto alt="фото" style="margin-bottom: .5rem;" )
+
+block variables
+	- section = {};
+	- section.title = 'Фото';
+	- section.type = 'default';
+
+block inner
+	.container
+		.row
+			+fotos_item( { foto: src.userfiles+'gallery/01.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/02.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/03.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/04.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/05.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/06.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/07.jpg' } )
+			+fotos_item( { foto: src.userfiles+'gallery/08.jpg' } )

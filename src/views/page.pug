@@ -1,0 +1,14 @@
+//-
+	Отдельная страница или пост
+	(singular.php)
+
+extend layout/_index
+
+block variables
+	- page.type = 'singular page';
+	- page.title = 'Страница / пост';
+
+block main
+	include blocks/_pageheader
+	include blocks/_content
+	include blocks/_pager

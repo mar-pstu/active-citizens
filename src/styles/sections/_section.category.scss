@@ -1,0 +1,23 @@
+
+// секция для вывода постов из категории
+.section--category {
+
+	.entry {
+		margin-top: $flexboxgrid-outer-margin;
+		margin-bottom: $flexboxgrid-outer-margin;
+	}
+
+	.entry {
+		.thumbnail {
+			display: block;
+			max-width: 15rem;
+			margin-top: $flexboxgrid-outer-margin;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.wp-post-thumbnail {
+			display: block;
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+//-
+	Вёрстка страницы результатов поиска
+	(search.php)
+
+
+extend layout/_index
+
+
+block variables
+	- page.type = 'search';
+	- page.title = 'Результаты поиска';
+
+
+mixin search_entry( args )
+	li.search__entry.entry
+		h3.title: a( href="#" ) #{args.title}
+		p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+
+block main
+	include blocks/_pageheader
+	ol.list-unstyled#search-list
+		+search_entry( { title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' } )
+		+search_entry( { title: 'Tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam' } )
+		+search_entry( { title: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo' } )
+		+search_entry( { title: 'Consequat duis aute irure dolor in reprehenderit in voluptate velit esse' } )
+		+search_entry( { title: 'Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' } )
+		+search_entry( { title: 'Proident, sunt in culpa qui officia deserunt mollit anim id est laboru' } )
+	include blocks/_pagination

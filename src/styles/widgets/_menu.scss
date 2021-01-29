@@ -1,0 +1,28 @@
+
+// виджет "Навигационное меню"
+.menu {
+
+	list-style-type: none;
+
+	> .menu-item + .menu-item {
+		border-top: .1rem solid lighten( $brand-default, 50% );
+	}
+
+	> .menu-item > a {
+		display: block;
+		padding: .5rem 0;
+	}
+
+	> .menu-item > a::before {
+		content: '';
+		display: inline-block;
+		width: .5rem;
+		height: .5rem;
+		margin-right: .5rem;
+		vertical-align: middle;
+		transform-origin: center center;
+		transform: rotate( 45deg );
+		background-color: lighten( $brand-default, 50% );
+	}
+	
+}

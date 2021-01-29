@@ -1,0 +1,187 @@
+<?php
+
+
+namespace pstuctvstzs;
+
+
+if ( ! defined( 'ABSPATH' ) ) { exit; };
+
+
+/**
+ * Проверяет данные поля чекбокс
+ * @return   bool
+ * */
+function sanitize_checkbox( $checked = false ) {
+	return ( ( isset( $checked ) && true == $checked ) ? true : false );
+}
+
+
+/**
+ * Проверяет является ли переданная строка валидным URL
+ * @param  string  $url исходная строка
+ * @return boolean      результат проверки
+ */
+function is_url( $url = '' ) {
+	return ( bool ) filter_var( $url, FILTER_VALIDATE_URL );
+}
+
+
+/**
+ *  Определяет есть ли дочернее меню у переданного пункта
+ */
+function is_nav_has_sub_menu( $item_id, $items ) {
+	foreach ( $items as $item ) {
+		if ( $item->menu_item_parent && $item->menu_item_parent == $item_id ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+/**
+ * Формирует массив идентификатор категории => название, для использования в элементах формы
+ * */
+function get_categories_choices() {
+	$categories = get_terms( [
+		'taxonomy'   => 'category',
+		'hide_empty' => false,
+		'fields'     => 'id=>name',
+	] );
+	return ( is_array( $categories ) ) ? $categories : [];
+}
+
+
+/**
+ * Подсветка результатов поиска
+ **/
+function search_backlight( $text ) {
+	if ( is_search() ) {
+		$query_terms = get_query_var( 'search_terms' );
+		if ( empty( $query_terms ) ) {
+			$query_terms = [ get_query_var( 's' ) ];
+		}
+		if ( empty( $query_terms ) ) {
+			return $text;
+		}
+		foreach ( $query_terms as $term ) {
+			$term = preg_quote( $term, '/' );
+			$text = preg_replace_callback( "/$term/iu", function( $match ) {
+				return '<span class="bg-info">'. $match[ 0 ] .'</span>';
+			}, $text );
+		}
+	}
+	return $text;
+}
+
+
+/**
+ * Функция для очистки массива параметров
+ * @param  array $default           расзерённые парметры и стандартные значения
+ * @param  array $args              неочищенные параметры
+ * @param  array $sanitize_callback одномерный массив с именами функция, с помощью поторых нужно очистить параметры
+ * @param  array $required          обязательные параметры
+ * @param  array $not_empty         параметры которые не могут быть пустыми
+ * @return array                    возвращает ощиченный массив разрешённых параметров
+ * */
+function parse_only_allowed_args( $default, $args, $sanitize_callback = [], $required = [], $not_empty = [] ) {
+	$args = ( array ) $args;
+	$result = [];
+	$count = 0;
+	while ( ( $value = current( $default ) ) !== false ) {
+		$key = key( $default );
+		if ( array_key_exists( $key, $args ) ) {
+			$result[ $key ] = $args[ $key ];
+			if ( isset( $sanitize_callback[ $count ] ) && ! empty( $sanitize_callback[ $count ] ) ) {
+				$result[ $key ] = $sanitize_callback[ $count ]( $result[ $key ] );
+			}
+		} elseif ( in_array( $key, $required ) ) {
+			return null;
+		} else {
+			$result[ $key ] = $value;
+		}
+		if ( empty( $result[ $key ] ) && in_array( $key, $not_empty ) ) {
+			return null;
+		}
+		$count = $count + 1;
+		next( $default );
+	}
+	return $result;
+}
+
+
+/**
+ * Конвертер ассоциативного массива в css правила
+ * @param    array    $rules   массив параметров, где ключ это селекторы
+ * @param    array    $args    дополнительные аргумаенты для преобразования
+ * @return   string
+ * */
+function css_array_to_css( $rules, $args = [] ) {
+	$args = array_merge( [
+		'indent'     => 0,
+		'container'  => false,
+	], $args );
+	$css = '';
+	$prefix = str_repeat( '  ', $args[ 'indent' ] );
+	foreach ($rules as $key => $value ) {
+		if ( is_array( $value ) ) {
+			$selector = $key;
+			$properties = $value;
+			$css .= $prefix . "$selector {\n";
+			$css .= $prefix . css_array_to_css( $properties, [
+				'indent'     => $args[ 'indent' ] + 1,
+				'container'  => false,
+			] );
+			$css .= $prefix . "}\n";
+		} else {
+			$property = $key;
+			if ( is_url( $value ) ) {
+				$value = 'url(' . $value . ')';
+			}
+			$css .= $prefix . "$property: $value;\n";
+		}
+	}
+	return ( $args[ 'container' ] ) ? "\n<style>\n" . $css . "\n</style>\n" : $css;
+}
+
+
+/**
+ * Удаление размера изображения из url вложения
+ * @param    string   $url   url изображения, который нужно очистить
+ * @return   string          очищенный url
+ * */
+function removing_image_size_from_url( $url = '' ) {
+	return preg_replace( '~-[0-9]+x[0-9]+(?=\..{2,6})~', '', $url );
+}
+
+
+/**
+ * Проверяет можно ли выврдить секцию главной страницы
+ * @param    array    $section    параметры секции
+ * @return   bool                 результат проверки
+ * */
+function is_home_section_valid( $section = [] ) {
+	return is_array( $section )
+		&& array_key_exists( 'slug', $section )
+		&& ! empty( $section[ 'slug' ] )
+		&& array_key_exists( 'title', $section )
+		&& ! empty( $section[ 'title' ] )
+		&& array_key_exists( 'type', $section )
+		&& ! empty( $section[ 'type' ] );
+}
+
+
+/**
+ * Формирует html код аттрибутов элемента управления формы
+ * @param  array  $atts  ассоциативный массив аттрибут=>значение
+ * @return string        html-код
+ */
+function render_atts( $atts = [] ) {
+	$html = '';
+	if ( is_array( $atts ) && ! empty( $atts ) ) {
+		foreach ( $atts as $key => $value ) {
+			$html .= ' ' . $key . '="' . $value . '"';
+		}
+	}
+	return $html;
+}

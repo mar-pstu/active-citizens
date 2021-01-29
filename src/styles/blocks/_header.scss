@@ -1,0 +1,67 @@
+
+//  Шапка сайта
+.header {
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	
+	.custom-logo-link {
+		width: 5rem;
+	}
+
+	.custom-logo {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.bloginfo {
+		margin-left: 1rem;
+		margin-right: auto;
+	}
+
+	.bloginfo .name {
+		@extend %h3;
+		margin-bottom: 0;
+	}
+
+	.bloginfo .description {
+		color: $titles-color;
+		font-size: 85%;
+	}
+
+	.searchform {
+		margin-left: auto;
+		display: none;
+		@include min-width( $screen-lg ) {
+			display: initial;
+		}
+	}
+
+	.languages {
+		list-style-type: none;
+		padding-left: 0;
+		margin: 0 .5rem;
+		font-size: 85%;
+	}
+
+	.languages li {
+		display: inline-block;
+	}
+
+	.languages .current {
+		font-weight: bold;
+		color: #fff;
+		background-color: $brand-success;
+		padding: .25rem .5rem;
+	}
+
+	.languages a {
+		display: block;
+		// font-size: 85%;
+	}
+
+}

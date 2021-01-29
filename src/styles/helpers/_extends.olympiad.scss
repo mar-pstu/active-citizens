@@ -1,0 +1,39 @@
+
+// типовые блоки для страниц олимпиад
+
+%olympiad-small-info {
+
+	padding: $flexboxgrid-outer-margin $flexboxgrid-outer-margin * 2;
+	color: #fff;
+	background-size: cover;
+	position: relative;
+
+	&::before {
+		@extend %background-block;
+		@extend %background-cover;
+		content: '';
+		background-color: rgba( 0, 0, 0, .5 );
+	}
+
+	.title {
+		color: #fff;
+		position: relative;
+		z-index: 1;
+	}
+
+	.title a {
+		color: #fff;
+	}
+
+	.datetime {
+		font-weight: bold;
+		position: relative;
+		z-index: 1;
+	}
+
+	p {
+		position: relative;
+		z-index: 1;
+	}
+
+}

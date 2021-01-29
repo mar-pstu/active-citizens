@@ -1,0 +1,34 @@
+//
+//	WP
+//	страница поиска (search.php)
+//
+
+
+.search {
+
+	counter-reset: search;
+
+	&__entry {
+		position: relative;
+		counter-increment: search;
+		margin-top: $flexboxgrid-outer-margin;
+		margin-bottom: $flexboxgrid-outer-margin;
+		padding-left: 3rem;
+	}
+
+	&__entry::before {
+		content: counter( search );
+		display: block;
+		background-color: $brand-success;
+		color: #fff;
+		width: 2rem;
+		height: 2rem;
+		line-height: 2rem;
+		vertical-align: middle;
+		text-align: center;
+		position: absolute;
+		top: $flexboxgrid-outer-margin;
+		left: 0;
+	}
+	
+}

@@ -1,0 +1,24 @@
+//-
+	Вёрстка страницы ошибки 404
+	Страница отличается от типовых
+
+
+extend layout/_index
+
+
+block variables
+	- page.type = 'error404';
+	- page.title = 'Ошибка 404';
+
+block breadcrumbs
+
+block middle
+	.container
+		.row.middle-xs
+			.col-xs-12.col-sm-4
+				img.error404__thumbnail.thumbnail.lazy( src="#" data-src=src.img+'error404.svg' alt=page.title )
+			.col-xs-12.col-sm-8
+				.error404__content.content
+					h1 #{page.title}
+					.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					include forms/_search

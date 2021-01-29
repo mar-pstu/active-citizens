@@ -1,0 +1,84 @@
+
+// главная навигационная панель темы
+.nav {
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		position: relative;
+	}
+
+	.list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: $brand-success;
+		z-index: 99;
+		@include min-width( $screen-md ) {
+			display: initial !important;
+			position: relative;
+			background-color: transparent;
+			box-shadow: none;
+			left: -$flexboxgrid-outer-margin;
+		}
+	}
+
+	.list li {
+		display: block;
+		text-align: left;
+		@include min-width( $screen-md ) {
+			text-align: left;
+			display: inline-block;
+			text-align: center;
+		}
+	}
+
+	a {
+		display: block;
+		color: #fff;
+		padding: .5rem 1rem;
+		transition: background-color .2s;
+	}
+
+	a:hover {
+		background-color: rgba( 255, 255, 255, .25 );
+	}
+
+	.toggle-button {
+		margin-left: auto;
+		border: none;
+		font-size: 75%;
+		padding: .5rem 1rem;
+		background-color: transparent;
+		display: inherit;
+		@include min-width( $screen-md ) {
+			display: none;
+		}
+	}
+
+	.toggle-button::before {
+		@extend %background-icon;
+		@extend %icon-burger;
+		@extend %icon;
+		@include size( 1rem, 1rem );
+		content: '';
+		margin-right: .5rem;
+		cursor: pointer;
+	}
+
+	.toggle-button.active::before {
+		@extend %icon-close;
+	}
+
+	.toggle-button .label {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+}

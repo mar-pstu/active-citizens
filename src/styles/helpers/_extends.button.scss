@@ -1,0 +1,74 @@
+//
+// Стили для наследования кнопок
+//
+
+// базовій стиль
+%button {
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	transition: border-bottom-color .2s, transform .2s;
+	padding: 0.25em 1em;
+	font-weight: normal;
+	text-align: center;
+	position: relative;
+	color: #fff;
+	&::before {
+		@extend %background-block;
+		content: '';
+		background-color: transparent;
+		transition: background-color .2s;
+	}
+	&:hover {
+		text-decoration: none;
+		color: #fff;
+	}
+	&:hover::before {
+		background-color: rgba( 255, 255, 255, .05 );
+	}
+}
+
+%button-default {
+	background-color: $brand-default;
+}
+
+%button-primary {
+	background-color: $brand-primary;
+}
+
+%button-success {
+	background-color: $brand-success;
+}
+
+%button-warning {
+	background-color: $brand-warning;
+}
+
+%button-small {
+	padding: 0 1rem;
+	font-size: 85%;
+}
+
+%button-large {
+	padding: .5em 2em;
+	font-size: 100%;
+	@include min-height( 41rem ) {
+		padding: 1rem 3rem;
+		font-size: 110%;
+	}
+}
+
+%button-block {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+%button-disabled {
+	background-color: #b7b7b7;
+	border-bottom: none;
+	&:hover {
+		background-image: none;
+	}
+}

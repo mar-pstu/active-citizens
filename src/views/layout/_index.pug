@@ -1,0 +1,49 @@
+//-
+	Шаблон-заготовка для наследования типовой страницы сайта
+
+include ../helpers/_variables
+include ../helpers/_mixing
+block variables
+	- page.type = 'page';
+doctype html
+html( lang="ru" )
+	include ../blocks/_head
+	block head
+	block body
+		body( class='is-desctop ' + page.type )
+
+			block wrapper
+				.wrapper#wrapper
+
+					block top
+						header.wrapper__header.header#header
+							block header
+								include ../blocks/_header
+						nav.wrapper__nav.nav#nav
+							block nav
+								include ../blocks/_nav
+						block breadcrumbs
+							include ../blocks/_breadcrumbs
+
+					block middle
+						.container
+							.row.stratch-sm
+								.col-xs-12.col-sm-3.first-sm
+									aside.wrapper__column.column
+										block column
+											include ../asides/_column
+								.col-xs-12.col-sm-8.first-xs.col-sm-offset-1
+									main.wrapper__main.main#main
+										block main
+											include ../blocks/_content
+
+					block bottom
+						aside.wrapper__basement.basement
+							block basement
+								include ../asides/_basement
+						footer.wrapper__footer.footer
+							block basement
+								include ../blocks/_footer
+
+			block enqueue
+				include ../blocks/_enqueue

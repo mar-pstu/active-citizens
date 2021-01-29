@@ -1,0 +1,33 @@
+
+// сайдбар низа сайта
+.basement {
+
+	// .container::after {
+	// 	content: '';
+	// 	display: block;
+	// 	background-color: #fff;
+	// 	height: .1rem;
+	// }
+
+	.widget {
+		margin-bottom: 1rem;
+	}
+
+	.widget:nth-child( 3n + 1 ) {
+		padding-right: 2rem;
+	}
+
+	.widget:nth-child( 3n + 2 ) {
+		padding-right: 2rem;
+	}
+
+	.widget:nth-child( 3n + 3 ) {
+		//
+	}
+
+	.widget .title {
+		// color: #fff;
+		border-color: $brand-primary;
+	}
+
+}

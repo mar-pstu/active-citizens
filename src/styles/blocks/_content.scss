@@ -1,0 +1,30 @@
+
+// блок контента 
+.content {
+
+	.alighright,
+	.pull-right,
+	.alignleft,
+	.pull-left {
+		@include max-width ( $screen-sm ) {
+			float: none;
+		}
+	}
+
+	table {
+		overflow-x: scroll;
+		max-width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+	}
+
+	ul:not([class]) {
+		list-style-type: none;
+	}
+
+	ul:not([class]) li::before {
+		content: "- ";
+	}
+
+}

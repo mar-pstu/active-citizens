@@ -1,0 +1,49 @@
+//
+//	Переменные
+//
+
+
+$screen-xs:                42rem;
+$screen-sm:                54rem;
+$screen-md:                70rem;
+$screen-lg:                85rem;
+$screen-xl:                98rem;
+
+$container-xs:             40rem;
+$container-sm:             52rem;
+$container-md:             68rem;
+$container-lg:             83rem;
+$container-xl:             96rem;
+
+$flexboxgrid-grid-columns: 12;
+$flexboxgrid-gutter-width: 1rem;
+$flexboxgrid-outer-margin: 1rem;
+$flexboxgrid-breakpoints:
+  xs $screen-sm $container-xs,
+  sm $screen-md $container-sm,
+  md $screen-lg $container-md,
+  lg $screen-xl $container-lg,
+  xl $screen-xl $container-xl;
+$flexboxgrid-max-width: 1920px;
+$smallest: xs;
+
+
+$brand-default:         #555555;
+$brand-primary:         #0c426f;
+$brand-success:         #60bb45;
+$brand-warning:         #990000;
+
+
+$body-color: #ffffff;
+$titles-color: #4d4d4d;
+$text-color: $brand-default;
+$link-color: $titles-color;
+
+
+$font-size-base:    16px;
+$line-height-base:  22em / 16em;
+$line-height-computed: floor( $font-size-base * $line-height-base );
+
+$border-radius-default: 5px;
+
+$font-family-base: 'Montserrat', sans-serif;

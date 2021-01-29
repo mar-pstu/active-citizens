@@ -1,0 +1,35 @@
+//-
+	Вёрстка стандартного блока / категории
+	(archive.php)
+
+
+extend layout/_index
+
+
+mixin archive_entry( args )
+	article.archive__entry.entry( role="listitem" )
+		.row
+			.col-xs-12.col-sm-4
+				a.entry__thumbnail.thumbnail( href="#" )
+					img.wp-lazy-thumbnail.lazy( src="#" data-src=args.thumbnail alt=args.title )
+			.col-xs-12.col-sm-8
+				h3.entry__title.title: a( href="#" ) #{args.title}
+				p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				p: time.small( datetime="2001-05-15 19:00" ) #[span.sr-only Опубликовано] 15 мая
+				p: a.btn.btn-success( href="#" ) Подробнее
+
+
+block variables
+	- page.type = 'archive';
+	- page.title = 'Архив';
+
+
+block main
+	include blocks/_pageheader
+	.entries-list( role="list" )
+		+archive_entry( { title: 'Lorem ipsum dolor sit amet', thumbnail: src.userfiles+'category/wp-post-thumbnail-01.jpg' } )
+		+archive_entry( { title: 'Consectetur adipisicing elit', thumbnail: src.userfiles+'category/wp-post-thumbnail-02.jpg' } )
+		+archive_entry( { title: 'Sed do eiusmod tempor incididunt ut labore', thumbnail: src.userfiles+'category/wp-post-thumbnail-03.jpg' } )
+		+archive_entry( { title: 'Ut enim ad minim veniam', thumbnail: src.userfiles+'category/wp-post-thumbnail-04.jpg' } )
+		+archive_entry( { title: 'Excepteur sint occaecat cupidatat non proident', thumbnail: src.userfiles+'category/wp-post-thumbnail-05.jpg' } )
+	include blocks/_pagination

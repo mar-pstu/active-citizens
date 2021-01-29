@@ -1,0 +1,64 @@
+
+// соседние посты
+.pager {
+
+	margin: $flexboxgrid-outer-margin * 2 0;
+
+	.entry {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.entry:hover .icon {
+		background-color: lighten( $brand-success, 5% );
+	}
+
+	.title {
+		font-size: 85%;
+	}
+
+	.icon {
+		@include size( 2rem, 2rem );
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: $brand-success;
+	}
+
+	.icon::before {
+		@extend %background-icon;
+		@extend %icon-down-arrow;
+		@include size( 1rem, 1rem );
+		content: '';
+		transform-origin: center center;
+	}
+
+	.prev {
+		flex-direction: row;
+		text-align: left;
+	}
+
+	.prev .icon {
+		margin-right: $flexboxgrid-outer-margin / 2;
+	}
+
+	.prev .icon::before {
+		transform: rotate( 90deg );
+	}
+
+	.next {
+		flex-direction: row-reverse;
+		text-align: right;
+	}
+
+	.next .icon {
+		margin-left: $flexboxgrid-outer-margin / 2;
+	}
+
+	.next .icon::before {
+		transform: rotate( -90deg );
+	}
+
+}

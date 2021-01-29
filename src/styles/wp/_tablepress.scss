@@ -1,0 +1,23 @@
+
+
+.dataTables_filter {
+	margin-bottom: .5em;
+}
+
+.dataTables_filter label input[ type=search ] {
+	display: block;
+	@include min-width( $screen-sm ) {
+		display: initial;
+	}
+}
+
+table.tablepress {
+	overflow-x: scroll;
+	width: 100%;
+	font-size: 85%;
+	display: block;
+	@include min-width( $screen-md ) {
+		font-size: 100%;
+		display: table;
+	}
+}

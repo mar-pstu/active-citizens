@@ -1,0 +1,16 @@
+extend layout/_index
+
+
+block variables
+	- page.type = 'home';
+	- page.title = 'Главная';
+
+block breadcrumbs
+
+block middle
+	block main
+		include sections/_cover
+		include sections/_smallinfo
+		include sections/_pages
+		include sections/_default
+		include sections/_category

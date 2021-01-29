@@ -1,0 +1,13 @@
+
+// каталог олимпиад
+.catalog {
+
+	&__entry {
+		@extend %olympiad-small-info;
+	}
+
+	&__entry + .entry {
+		margin-top: $flexboxgrid-outer-margin;
+	}
+
+}

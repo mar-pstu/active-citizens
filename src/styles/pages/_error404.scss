@@ -1,0 +1,24 @@
+
+// стили страницы 404
+.error404 {
+
+	&__thumbnail {
+		max-width: 20rem;
+		width: 100%;
+		margin: 1rem auto;
+		display: block;
+	}
+
+	&__content {
+		.title {
+			text-align: center;
+			@include min-width( $screen-md ) {
+				text-align: left;
+			}
+		}
+		.searchform {
+			margin-bottom: 1em;
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+
+//
+	Соседние посты
+
+mixin pager_entry( args )
+	.col-xs-6
+		a( href="#" class="pager__entry entry "+args.classes )
+			.icon #[span.sr-only Предыдущий / следующий пост]
+			.title #{args.title}
+
+.pager#pager
+	.row.middle-xs
+		+pager_entry( { classes: 'prev', title: 'Предыдущий пост' } )
+		+pager_entry( { classes: 'next', title: 'Следующий пост' } )

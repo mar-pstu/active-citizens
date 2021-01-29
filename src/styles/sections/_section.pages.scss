@@ -1,0 +1,20 @@
+
+// секция с о списком подстраниц
+.section--pages {
+
+	.entry + .entry {
+		margin-top: $flexboxgrid-outer-margin;
+	}
+
+	.entry:nth-of-type( even ) .row {
+		flex-direction: row-reverse;
+	}
+
+	.wp-post-thumbnail {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 25rem;
+	}
+
+}

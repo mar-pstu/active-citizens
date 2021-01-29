@@ -1,0 +1,25 @@
+extend ../layout/_section
+
+mixin countries_flag( args )
+	.col-xs-12.col-sm-3.col-md-3.col-lg-3
+		figure
+			a( href="#" )
+				img( src=args.thumbnail alt=args.title )
+
+block variables
+	- section = {};
+	- section.title = 'Участники';
+	- section.type = 'default';
+
+block inner
+	// главная страница - секция "Страны участники"
+	.container
+		// содержимое будет редактироваться в стандартном редакторе WP
+		.row
+			+countries_flag( { thumbnail: src.userfiles+'countries/russia.png', title: "Флаг России" } )
+			+countries_flag( { thumbnail: src.userfiles+'countries/gb.png', title: "Флаг Великобритании" } )
+			+countries_flag( { thumbnail: src.userfiles+'countries/norway.png', title: "Флаг Норвегии" } )
+			+countries_flag( { thumbnail: src.userfiles+'countries/finland.png', title: "Флаг Финляндии" } )
+			+countries_flag( { thumbnail: src.userfiles+'countries/yakutia.png', title: "Флаг Якутии" } )
+			+countries_flag( { thumbnail: src.userfiles+'countries/alaska.png', title: "Флаг Аляски" } )
+		p.text-center: a.btn.btn-lg.btn-success.permalink( href="#" ) Подробнее

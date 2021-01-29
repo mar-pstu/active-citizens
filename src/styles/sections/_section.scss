@@ -1,0 +1,38 @@
+
+// 
+.section {
+
+	&:nth-of-type( odd ) {
+		background-color: transparentize( $brand-success, .75 );
+	}
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
+	&--smallinfo {
+		position: relative;
+	}
+
+	&--smallinfo {
+		@extend %section;
+	}
+
+	&--default {
+		@extend %section;
+	}
+
+	&--category {
+		@extend %section;
+	}
+
+	&--pages {
+		@extend %section;
+	}
+
+	&__heading {
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+}

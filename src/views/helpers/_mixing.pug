@@ -1,0 +1,20 @@
+
+//-
+	Стандартный виджет для сайдбара
+mixin widget( args )
+	div( class="widget "+args.classes )
+		h3.widget__title.title #{args.title}
+		block
+
+
+//-
+	Выпадающий список
+mixin select( choices, id )
+	select( name=id id=id )
+		each label, index in choices
+			option( value=index ) #{label}
+
+//-
+	Вставить файл
+mixin block()
+	block

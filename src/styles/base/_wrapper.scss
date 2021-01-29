@@ -1,0 +1,48 @@
+//
+//    WRAPPER
+//    контейнер страницы, прижатие футера
+
+
+.wrapper {
+
+	margin: 0px auto;
+	min-width: 300px;
+	min-height: 100vh;
+	box-shadow: 0 0 .25rem rgba( 0, 0, 0, 0.25 );
+	position: relative;
+	overflow: hidden;
+
+	&__header {
+		padding: 1rem 0;
+	}
+
+	&__nav {
+		background-color: $brand-success;
+		color: #fff;
+	}
+
+	&__column {
+		// @include min-width( $screen-md ) {
+		// 	padding-right: 5rem;
+		// }
+	}
+
+	&__main {
+		min-height: 50vh;
+	}
+
+	&__basement {
+		// background-color: $brand-success;
+		padding: .5rem 0;
+		// color: #fff;
+		position: relative;
+	}
+
+	&__footer {
+		background-color: $brand-success;
+		color: #fff;
+		padding-top: .5rem;
+		padding-bottom: .5rem;
+	}
+
+}

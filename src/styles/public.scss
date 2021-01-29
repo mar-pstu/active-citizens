@@ -1,0 +1,65 @@
+// переменнеые и классы для наследования
+@import "helpers/variables";
+@import "helpers/functions";
+@import "helpers/flex";
+@import "helpers/mixins";
+@import "helpers/extends.section";
+@import "helpers/extends.button";
+@import "helpers/extends.titles";
+@import "helpers/extends.icons";
+@import "helpers/extends.type";
+@import "helpers/extends.olympiad";
+
+// базовые стили и классы
+// @import "base/normalize";
+// @import "base/type";
+// @import "base/wrapper";
+// @import "base/grid";
+
+// блоки страницы
+// @import "blocks/burger";
+// @import "blocks/pageheader";
+// @import "blocks/breadcrumbs";
+@import "blocks/pagination";      // постраничная навигация
+@import "blocks/form";            // стили форм
+@import "blocks/buttons";         // стили кнопок
+@import "blocks/content";         // внутренее содержимое страниц, которе изменяется через редактор админки
+@import "blocks/to-top-button";   // кнопка наверх
+@import "blocks/header";          // Шапка сайта
+@import "blocks/nav";             // Навигация
+@import "blocks/widget";          // виджет
+@import "blocks/main";            // основной блок контента
+@import "blocks/footer";          // Подвал сайта
+@import "blocks/pager";           // соседние посты
+
+// стили WP
+@import "wp/gallery";             // галерея гутенберга
+@import "wp/wpadminbar";          // стили верхней админпанели в публичной части сайта
+
+// виджеты WP
+@import "widgets/tagcloud";
+@import "widgets/calendar";
+@import "widgets/searchform";
+@import "widgets/menu";
+
+// сайдбары
+@import "asides/column";          // боковая колонка
+@import "asides/basement";        // сайдбар подвала сайта
+
+// секции странциы
+@import "sections/section";
+@import "sections/section.cover"; // секция по типу обложки
+@import "sections/section.default"; // стандартная секция, используеься на главной странице
+@import "sections/section.smallinfo"; // секция с кратким обзором страницы
+@import "sections/section.pages"; // секция со списком страниц с кратким описанием
+@import "sections/section.category"; // список постов из категории
+
+// стили шаблонов страниц
+@import "pages/archive";          // страница блога / архива
+@import "pages/error404";         // страница ошибки 404
+@import "pages/search";           // страница результатов поиска
+@import "pages/page";             // постоянная страница
+@import "pages/olympiad";         // страница олимпиады
+@import "pages/catalog";          // список олимпиад
+@import "pages/question";         // страница вопроса (задания) олимпиады
+@import "pages/tasks";            // список заданий

@@ -1,0 +1,27 @@
+
+// стандартная форма поиска
+.searchform {
+	position: relative;
+	.form-control {
+		padding-right: 3em;
+	}
+	.searchsubmit {
+		position: absolute;
+		display: block;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background-color: transparent;
+		padding: 0;
+		margin: 0;
+		width: 2em;
+		border-bottom: none;
+	}
+	.searchsubmit::before {
+		@extend %icon;
+		@extend %background-icon;
+		// @extend %icon-search;
+		content: '';
+		margin-left: auto;
+	}
+}

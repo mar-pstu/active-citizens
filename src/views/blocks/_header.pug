@@ -1,0 +1,17 @@
+//-
+	Шапка сайта
+
+.container
+	
+	a.custom-logo-link( href="#" title="На главную" )
+		img.custom-logo( src=src.userfiles+'logo.png', alt=blog.name )
+
+	.bloginfo
+		.name #{blog.name}
+		.deacription #{blog.description}
+
+	include ../forms/_search
+
+	ul.languages
+		li.current En
+		li: a( href="#" ) Ru

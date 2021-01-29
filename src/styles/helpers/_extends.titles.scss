@@ -1,0 +1,40 @@
+
+%title {
+	color: $titles-color;
+	font-weight: normal;
+	margin-top: 1rem;
+	margin-bottom: 0;
+}
+
+%h1 {
+	@extend %title;
+	font-size: 2rem;
+	@include min-width( $screen-sm ) {
+		font-size: 2.5rem;
+	}
+}
+
+%h2 {
+	@extend %title;
+	font-size: 1.5rem;
+	@include min-width( $screen-sm ) {
+		font-size: 2rem;
+	}
+}
+
+%h3 {
+	@extend %title;
+	font-size: 1.25rem;
+}
+
+%h4 {
+	@extend %title;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+%h5 {
+	@extend %title;
+	font-size: 1.25rem;
+	font-weight: normal;
+}

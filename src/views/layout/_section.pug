@@ -1,0 +1,22 @@
+
+// типовая секция
+
+block variables
+	- var section = {};
+	- section.title = 'Заголовок секции';
+	- section.description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+	- section.type = 'default';
+
+section( class="section section--" + section.type )
+
+	block body
+
+		.section__heading.heading
+			block heading
+				.container
+					h2.title #{section.title}
+					p.description #{section.description}
+
+		.section__inner.inner
+			block inner
+				.container

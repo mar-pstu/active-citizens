@@ -1,0 +1,9 @@
+
+// страница олимпиады
+.olympiad {
+
+	.pageheader {
+		@extend %olympiad-small-info;
+	}
+
+}

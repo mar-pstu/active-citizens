@@ -1,0 +1,32 @@
+
+// главная страница - Направления проекта (новости)
+
+mixin section_entry( args )
+	.col-xs-12.col-sm-6
+		article.entry( role="listitem" )
+			.row.middle-xs
+				.col-xs-12.col-sm-9
+					h3.title #{args.title}
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+					a.permalink.btn.btn-sm.btn-success Подробнее
+				.col-xs-12.col-sm-3.first-xs
+					a.thumbnail
+						img.wp-post-thumbnail.lazy( src="#" data-src=args.thumbnail alt=args.title )
+
+section.section.section--category
+	.section__heading.heading
+		.container
+			h2.title Направления проекта
+			p.description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	.section__inner.inner( role="list" )
+		.container
+			.row
+				+section_entry( { title: 'Заголовок поста 1', thumbnail: src.userfiles+'category/wp-post-thumbnail-01.jpg' } )
+				+section_entry( { title: 'Заголовок поста 2', thumbnail: src.userfiles+'category/wp-post-thumbnail-02.jpg' } )
+				+section_entry( { title: 'Заголовок поста 3', thumbnail: src.userfiles+'category/wp-post-thumbnail-03.jpg' } )
+				+section_entry( { title: 'Заголовок поста 4', thumbnail: src.userfiles+'category/wp-post-thumbnail-04.jpg' } )
+				+section_entry( { title: 'Заголовок поста 5', thumbnail: src.userfiles+'category/wp-post-thumbnail-05.jpg' } )
+				+section_entry( { title: 'Заголовок поста 6', thumbnail: src.userfiles+'category/wp-post-thumbnail-06.jpg' } )
+				+section_entry( { title: 'Заголовок поста 7', thumbnail: src.userfiles+'category/wp-post-thumbnail-07.jpg' } )
+				+section_entry( { title: 'Заголовок поста 8', thumbnail: src.userfiles+'category/wp-post-thumbnail-08.jpg' } )
+	p.text-center: a.btn.btn-lg.btn-success Больше новостей
