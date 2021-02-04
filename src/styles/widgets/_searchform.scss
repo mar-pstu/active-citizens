@@ -6,6 +6,7 @@
 		padding-right: 3em;
 	}
 	.searchsubmit {
+		@extend %icon-search;
 		position: absolute;
 		display: block;
 		top: 0;
@@ -16,12 +17,15 @@
 		margin: 0;
 		width: 2em;
 		border-bottom: none;
+		background-size: 75%;
+		background-repeat: no-repeat;
+		background-position: center center;
+		filter: opacity( 25% );
+		transition: filter .25s;
 	}
-	.searchsubmit::before {
-		@extend %icon;
-		@extend %background-icon;
-		// @extend %icon-search;
-		content: '';
-		margin-left: auto;
+
+	.searchsubmit:hover {
+		filter: opacity( 100% );
 	}
+
 }

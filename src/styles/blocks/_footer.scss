@@ -13,25 +13,16 @@
 		}
 	}
 
-	&__socials {
+	&__developer {
 		text-align: center;
-		list-style-type: none;
-		padding-left: 0;
-		margin: 0;
+		color: #fff;
 		@include min-width( $screen-sm ) {
 			text-align: right;
 		}
-		.item {
-			@extend %background-icon;
-			@include size( 2rem, 2rem );
-			display: inline-block;
-			vertical-align: middle;
-		}
-		.item + .item { margin-left: 1rem; }
-		.item--odnoklassniki { @extend %icon-odnoklassniki; }
-		.item--vkontacte { @extend %icon-vkontacte; }
-		.item--instagram { @extend %icon-instagram; }
-		.item--facebook { @extend %icon-facebook; }
+	}
+
+	a {
+		color: #fff;
 	}
 
 }

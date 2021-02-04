@@ -177,10 +177,14 @@ body.compensate-for-scrollbar {
   max-width: 100%;
   overflow: auto;
   padding: 0;
-  padding: 24px;
+  padding: 2rem;
   position: relative;
   text-align: left;
   vertical-align: middle; }
+
+.fancybox-content .searchform {
+  min-width: 300px;
+}
 
 .fancybox-slide--image .fancybox-content {
   -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.14, 1);
