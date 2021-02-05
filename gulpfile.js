@@ -31,12 +31,6 @@ gulp.task( 'public_scripts', function() {
 );
 
 
-gulp.task( 'video', function () {
-	return gulp.src( './src/video/*.*' )
-		.pipe( gulp.dest( './video/' ) );
-} );
-
-
 gulp.task( 'fonts', function () {
 	return gulp.src( './src/fonts/*.*' )
 		.pipe( gulp.dest( './fonts/' ) );
@@ -93,7 +87,6 @@ gulp.task( 'other_scripts', function () {
 		.pipe( gulp.dest( './scripts/' ) )
 		.on( 'end', browserSync.reload );
 } );
-
 
 
 gulp.task( 'minscripts', function () {
@@ -157,13 +150,12 @@ gulp.task( 'watch', function () {
 	gulp.watch( './src/scripts/**/*.js',                  gulp.series( 'scripts', 'public_scripts' ) );
 	gulp.watch( './src/images/**/*.{png,jpg,svg,gif}',    gulp.series( 'images' ) );
 	gulp.watch( './src/userfiles/**/*.{png,jpg,svg,gif}', gulp.series( 'userfiles' ) );
-	gulp.watch( './src/video/**/*.*',                     gulp.series( 'video' ) );
 	gulp.watch( './src/fonts/**/*.*',                     gulp.series( 'fonts' ) );
 } );
 
 
 
 gulp.task( 'default', gulp.series(
-	gulp.parallel( 'html', 'index', 'styles', 'scripts', 'images', 'userfiles', 'video', 'fonts', 'public_scripts' ),
+	gulp.parallel( 'html', 'index', 'styles', 'scripts', 'images', 'userfiles', 'fonts', 'public_scripts' ),
 	gulp.parallel( 'watch', 'server' )
 ) );
