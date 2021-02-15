@@ -12,7 +12,10 @@ html( lang="ru" )
 	block body
 		body( class='is-desctop ' + page.type )
 
+			include ../blocks/_mobilenav
+
 			block wrapper
+
 				.wrapper#wrapper
 
 					block top
@@ -26,7 +29,7 @@ html( lang="ru" )
 							include ../blocks/_breadcrumbs
 
 					block middle
-						.container
+						.container.mt-3.mb-3
 							.row.stratch-sm
 								.col-xs-12.col-sm-3.first-sm
 									aside.wrapper__column.column

@@ -2,16 +2,24 @@
 
 	jQuery( document ).ready( function () {
 
-		var $list = jQuery( '#nav-list' );
-		var $toggle = jQuery( '#toggle-button' );
+		var $mobilenav = jQuery( '#mobilenav' );
+		var $toggle = jQuery( '[data-toggle=nav]' );
+		var $body = jQuery( 'body' );
+
+		if ( typeof $body.attr( 'data-mobilenav' ) == typeof undefined && $body.attr( 'data-mobilenav' ) == false ) {
+			$body.attr( 'data-mobilenav', 'inactive' );
+			$mobilenav.slideUp( 0 );
+		}
 
 		function Toggle() {
-			if ( $toggle.hasClass( 'active' ) ) {
-				$toggle.removeClass( 'active' );
-				$list.slideUp( 200 );
+			if ( 'active' == $body.attr( 'data-mobilenav' ) ) {
+				$body.attr( 'data-mobilenav', 'inactive' );
+				$body.css( 'overflow', 'scroll' );
+				$mobilenav.slideUp( 200 );
 			} else {
-				$toggle.addClass( 'active' );
-				$list.slideDown( 200 );
+				$body.attr( 'data-mobilenav', 'active' );
+				$body.css( 'overflow', 'hidden' );
+				$mobilenav.slideDown( 200 );
 			}
 		}
 

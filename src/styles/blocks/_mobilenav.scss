@@ -1,0 +1,57 @@
+
+// мобильное меню
+
+
+.mobilenav {
+
+	color: #fff;
+	background-color: #fff;
+	background-color: $brand-success;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	z-index: 999;
+	overflow-y: auto;
+
+	.btn-withicon {
+		display: inline-block;
+	}
+
+	.btn-withicon::after {
+		@extend %icon-close;
+	}
+
+	.list {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	ul, ol {
+		list-style-position: inside;
+	}
+
+	.searchform {
+		margin-bottom: 1rem;
+	}
+
+	.widger {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	h2,
+	h3,
+	h4,
+	h5 {
+		color: #fff;
+	}
+
+	a {
+		color: #fff;
+	}
+
+}

@@ -20,4 +20,22 @@
 
 	&-block { @extend %button-block; }
 
+	&-withicon {
+		border: none;
+		font-size: 75%;
+		padding: .5rem 1rem;
+		background-color: transparent;
+		display: inherit;
+	}
+
+	&-withicon::after {
+		@extend %background-icon;
+		@include size( 1rem, 1rem );
+		content: '';
+		display: inline-block;
+		margin-left: .5rem;
+		margin-right: .5rem;
+		vertical-align: middle;
+	}
+
 }

@@ -1,0 +1,23 @@
+
+//-
+	мобильное меню
+
+.mobilenav#mobilenav( style="display: none;" )
+
+	.container
+
+		.text-right
+			button.btn.btn-withicon( data-toggle='nav' ) Закрыть меню
+
+		include ../forms/_search
+
+		h3 Меню
+
+		ul.list
+			li.menu-item.current-menu-item: a.active-menu( href="home.html" ) Главная
+			li.menu-item: a(href="page.html") Постоянная странциа
+			li.menu-item: a(href="404.html") Страница 404
+			li.menu-item: a(href="search.html") Результаты поиска
+			li.menu-item: a(href="archive.html") Блог
+
+		include ../asides/_mobilenav

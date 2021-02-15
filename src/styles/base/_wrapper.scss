@@ -22,23 +22,23 @@
 	}
 
 	&__column {
-		// @include min-width( $screen-md ) {
-		// 	padding-right: 5rem;
-		// }
+		//
 	}
 
 	&__main {
+		@extend %mb-3;
 		min-height: 50vh;
 	}
 
 	&__basement {
-		// background-color: $brand-success;
+		@extend %mt-3;
+		@extend %mb-3;
 		padding: .5rem 0;
-		// color: #fff;
 		position: relative;
 	}
 
 	&__footer {
+		@extend %mt-3;
 		background-color: $brand-success;
 		color: #fff;
 		padding-top: .5rem;

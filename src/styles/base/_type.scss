@@ -79,3 +79,16 @@ img.alignright, a.alignright img { margin: .25rem 0 1rem 1rem; }
 	max-width: 100%;
 	overflow-x: scroll;
 }
+
+@for $i from 1 through 3 {
+	.m-#{$i} { @extend %m-#{$i}; }
+	.mt-#{$i} { @extend %mt-#{$i}; }
+	.mb-#{$i} { @extend %mb-#{$i}; }
+	.ml-#{$i} { @extend %ml-#{$i}; }
+	.mr-#{$i} { @extend %mr-#{$i}; }
+	.p-#{$i} { @extend %p-#{$i}; }
+	.pt-#{$i} { @extend %pt-#{$i}; }
+	.pb-#{$i} { @extend %pb-#{$i}; }
+	.pl-#{$i} { @extend %pl-#{$i}; }
+	.pr-#{$i} { @extend %pr-#{$i}; }
+}

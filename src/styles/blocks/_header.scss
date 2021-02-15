@@ -78,22 +78,15 @@
 
 	.search {
 		margin: .5rem 1rem;
-		font-size: 75%;
-		padding: .5rem;
 		flex-shrink: 0;
+		color: $brand-default;
 		@include min-width( $screen-sm ) {
 			margin: 0 1rem;
 		}
 	}
 
 	.search::after {
-		@extend %background-icon;
 		@extend %icon-search;
-		@include size( 1rem, 1rem );
-		content: '';
-		display: inline-block;
-		margin-left: .5rem;
-		vertical-align: middle;
 	}
 
 	.languages {
