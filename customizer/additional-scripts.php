@@ -7,13 +7,11 @@ namespace pstuctvstzs;
 if ( ! defined( 'ABSPATH' ) ) { exit; };
 
 
-/**
- * Регистрация секции настроек для секции главйно страницы типа "default"
- * */
-function customizer_settings_additional_scripts( $wp_customize ) {
+function add_settings_additional_scripts( $wp_customize ) {
 
+	// регистрация панели
 	$wp_customize->add_section(
-		PSTUCTVSTZS_SLUG . '_additional_scripts',
+		'template_additional_scripts',
 		[
 			'title'            => __( 'Дополнительные скрипты', PSTUCTVSTZS_TEXTDOMAIN ),
 			'priority'         => 70,
@@ -30,7 +28,7 @@ function customizer_settings_additional_scripts( $wp_customize ) {
 	$wp_customize->add_control(
 		'additionalscriptsafterhead',
 		[
-			'section'           => PSTUCTVSTZS_SLUG . '_additional_scripts',
+			'section'           => 'template_additional_scripts',
 			'label'             => __( 'После тега head', PSTUCTVSTZS_TEXTDOMAIN ),
 			'type'              => 'textarea',
 		]
@@ -45,7 +43,7 @@ function customizer_settings_additional_scripts( $wp_customize ) {
 	$wp_customize->add_control(
 		'additionalscriptsafterbody',
 		[
-			'section'           => PSTUCTVSTZS_SLUG . '_additional_scripts',
+			'section'           => 'template_additional_scripts',
 			'label'             => __( 'После тега body', PSTUCTVSTZS_TEXTDOMAIN ),
 			'type'              => 'textarea',
 		]
@@ -53,4 +51,4 @@ function customizer_settings_additional_scripts( $wp_customize ) {
 
 }
 
-add_action( 'customize_register', 'pstuctvstzs\customizer_settings_additional_scripts', 10, 1 );
+add_action( 'customize_register', 'pstuctvstzs\add_settings_additional_scripts', 10, 1 );

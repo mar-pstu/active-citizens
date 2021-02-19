@@ -21,7 +21,18 @@
 		}
 	}
 
-	.list li {
+	.list ~ .burger {
+		margin-left: auto;
+		@include min-width( $screen-md ) {
+			display: none;
+		}
+	}
+
+	.burger::after {
+		@extend %icon-burger;
+	}
+
+	.list .menu-item {
 		display: block;
 		text-align: left;
 		@include min-width( $screen-md ) {
@@ -35,22 +46,56 @@
 		display: block;
 		color: #fff;
 		padding: .5rem 1rem;
-		transition: background-color .2s;
+		transition: background-color .25s;
 	}
 
+	.has-sub-menu.active > a,
 	a:hover {
-		background-color: rgba( 255, 255, 255, .25 );
+		background-color: darken( $brand-success, 5% );
 	}
 
-	.btn-withicon {
-		margin-left: auto;
-		@include min-width( $screen-md ) {
-			display: none;
-		}
-	}
 
 	.btn-withicon::after {
 		@extend %icon-burger;
-	}	
+	}
+
+	.has-sub-menu {
+		position: relative;
+	}
+
+	.has-sub-menu > a::after {
+		@extend %background-icon;
+		@extend %icon-down-arrow;
+		@include size( .75rem, .75rem );
+		content: '';
+		display: inline-block;
+		margin-left: .5rem;
+		vertical-align: middle;
+	}
+
+	.sub-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 20rem;
+		z-index: 1;
+		background-color: #fff;
+		border: .25rem solid darken( $brand-success, 5% );
+		color: $brand-default;
+	}
+
+	.sub-menu .menu-item {
+		display: block;
+	}
+
+	.sub-menu a {
+		color: $brand-default;
+		text-align: left;
+	}
+
+	.sub-menu a:hover {
+		color: #fff;
+	}
 
 }

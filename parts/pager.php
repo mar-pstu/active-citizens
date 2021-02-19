@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; };
 global $post;
 
 
-include get_theme_file_path( 'views/pager-before.php' );
+echo apply_filters( 'template_pager_before', '<div class="pager" id="pager"><div class="row middle-xs">' );
 
 
 foreach ( [
@@ -36,4 +36,4 @@ foreach ( [
 wp_reset_postdata();
 
 
-include get_theme_file_path( 'views/pager-after.php' );
+echo apply_filters( 'template_pager_after', '<div class="pager" id="pager"><div class="row middle-xs">' );

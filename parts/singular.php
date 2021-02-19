@@ -13,7 +13,7 @@ if ( have_posts() ) {
 		
 		the_post();
 
-		include get_theme_file_path( 'views/content-before.php' );
+		do_action( 'template_content_before' );
 
 		the_content();
 
@@ -21,7 +21,7 @@ if ( have_posts() ) {
 			comments_template();
 		}
 
-		include get_theme_file_path( 'views/content-after.php' );
+		do_action( 'template_content_after' );
 
 	}
 

@@ -7,38 +7,25 @@ namespace pstuctvstzs;
 if ( ! defined( 'ABSPATH' ) ) { exit; };
 
 
-$socials = [];
+$copyright_name = get_theme_mod( 'footercopyrightname' );
 
-foreach ( apply_filters( 'footer_socials', [] ) as $key => $label ) {
-	$url = trim( get_theme_mod( 'footersocial' . $key ) );
-	if ( is_url( $url ) ) {
-		$socials[ $key ] = [
-			'label' => $label,
-			'url'   => $url,
-		];
-	}
+if ( empty( $copyright_name ) ) {
+	$copyright_name = get_bloginfo( 'name', 'raw' );
 }
 
 
 ?>
 
+			<?php get_sidebar( 'basement' ) ?>
 
 			<footer class="wrapper__footer footer">
 				<div class="container">
 					<div class="row middle-xs">
 						<div class="col-xs-12 col-sm-6">
-							<p class="footer__copyright copyright" role="contentinfo">© <?php bloginfo( 'name' ) ?>, <?php echo date( 'Y' ); ?> </p>
+							<p class="footer__copyright copyright" role="contentinfo">© <?php echo $copyright_name; ?>, <?php echo date( 'Y' ); ?></p>
 						</div>
 						<div class="col-xs-12 col-sm-6">
-							<?php if ( ! empty( $socials ) ) : ?>
-								<div class="footer__socials socials" role="list">
-									<?php foreach ( $socials as $key => $social ) : ?>
-										<a class="socials__item item item--<?php echo $key; ?>" href="<?php echo esc_attr( $social[ 'url' ] ); ?>" role="listitem">
-											<span class="sr-only"><?php echo $social[ 'label' ]; ?></span>
-										</a>
-									<?php endforeach; ?>
-								</div>
-							<?php endif; ?>
+							<p class="footer__developer developer"><?php _e( 'Разработано <a href="https://cct.pstu.edu/">ЦКТ ПГТУ</a>', PSTUCTVSTZS_TEXTDOMAIN ); ?></p>
 						</div>
 					</div>
 				</div>

@@ -12,14 +12,14 @@ block variables
 
 
 mixin search_entry( args )
-	li.search__entry.entry
+	.search__entry.entry( role="listitem" )
 		h3.title: a( href="#" ) #{args.title}
 		p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 
 block main
 	include blocks/_pageheader
-	ol.list-unstyled#search-list
+	.entries-list( role="list" )
 		+search_entry( { title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' } )
 		+search_entry( { title: 'Tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam' } )
 		+search_entry( { title: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo' } )

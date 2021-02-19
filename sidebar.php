@@ -10,8 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) { exit; };
 ?>
 
 
-<aside id="sidebar-column" class="wrapper__column column">
+<?php if ( is_active_sidebar( 'column' ) ) : ?>
 
-	<?php dynamic_sidebar( 'column' ); ?>
+	<aside class="wrapper__column column">
 
-</aside>
+		<?php dynamic_sidebar( 'column' ); ?>
+
+	</aside>
+
+<?php endif; ?>

@@ -27,51 +27,37 @@ function is_url( $url = '' ) {
 
 
 /**
- *  Определяет есть ли дочернее меню у переданного пункта
- */
-function is_nav_has_sub_menu( $item_id, $items ) {
-	foreach ( $items as $item ) {
-		if ( $item->menu_item_parent && $item->menu_item_parent == $item_id ) {
-			return true;
-		}
-	}
-	return false;
-}
-
-
-/**
- * Формирует массив идентификатор категории => название, для использования в элементах формы
+ * Конвертер ассоциативного массива в css правила
+ * @param    array    $rules   массив параметров, где ключ это селекторы
+ * @param    array    $args    дополнительные аргумаенты для преобразования
+ * @return   string
  * */
-function get_categories_choices() {
-	$categories = get_terms( [
-		'taxonomy'   => 'category',
-		'hide_empty' => false,
-		'fields'     => 'id=>name',
-	] );
-	return ( is_array( $categories ) ) ? $categories : [];
-}
-
-
-/**
- * Подсветка результатов поиска
- **/
-function search_backlight( $text ) {
-	if ( is_search() ) {
-		$query_terms = get_query_var( 'search_terms' );
-		if ( empty( $query_terms ) ) {
-			$query_terms = [ get_query_var( 's' ) ];
-		}
-		if ( empty( $query_terms ) ) {
-			return $text;
-		}
-		foreach ( $query_terms as $term ) {
-			$term = preg_quote( $term, '/' );
-			$text = preg_replace_callback( "/$term/iu", function( $match ) {
-				return '<span class="bg-info">'. $match[ 0 ] .'</span>';
-			}, $text );
+function css_array_to_css( $rules, $args = [] ) {
+	$args = array_merge( [
+		'indent'     => 0,
+		'container'  => false,
+	], $args );
+	$css = '';
+	$prefix = str_repeat( '  ', $args[ 'indent' ] );
+	foreach ($rules as $key => $value ) {
+		if ( is_array( $value ) ) {
+			$selector = $key;
+			$properties = $value;
+			$css .= $prefix . "$selector {\n";
+			$css .= $prefix . css_array_to_css( $properties, [
+				'indent'     => $args[ 'indent' ] + 1,
+				'container'  => false,
+			] );
+			$css .= $prefix . "}\n";
+		} else {
+			$property = $key;
+			if ( filter_var( $value, FILTER_VALIDATE_URL ) ) {
+				$value = 'url(' . $value . ')';
+			}
+			$css .= $prefix . "$property: $value;\n";
 		}
 	}
-	return $text;
+	return ( $args[ 'container' ] ) ? "\n<style>\n" . $css . "\n</style>\n" : $css;
 }
 
 
@@ -111,63 +97,33 @@ function parse_only_allowed_args( $default, $args, $sanitize_callback = [], $req
 
 
 /**
- * Конвертер ассоциативного массива в css правила
- * @param    array    $rules   массив параметров, где ключ это селекторы
- * @param    array    $args    дополнительные аргумаенты для преобразования
- * @return   string
- * */
-function css_array_to_css( $rules, $args = [] ) {
-	$args = array_merge( [
-		'indent'     => 0,
-		'container'  => false,
-	], $args );
-	$css = '';
-	$prefix = str_repeat( '  ', $args[ 'indent' ] );
-	foreach ($rules as $key => $value ) {
-		if ( is_array( $value ) ) {
-			$selector = $key;
-			$properties = $value;
-			$css .= $prefix . "$selector {\n";
-			$css .= $prefix . css_array_to_css( $properties, [
-				'indent'     => $args[ 'indent' ] + 1,
-				'container'  => false,
-			] );
-			$css .= $prefix . "}\n";
-		} else {
-			$property = $key;
-			if ( is_url( $value ) ) {
-				$value = 'url(' . $value . ')';
-			}
-			$css .= $prefix . "$property: $value;\n";
+ * Формирует html-код выпадающего списка
+ * @param  array  $choices           выринаты выбора ключ=>название
+ * @param  array  $selected          выбранные элементы
+ * @param  array  $atts              аттрибуты выпадающего списка
+ * @param  string $show_option_none  что показывать в пустом элементе
+ * @param  string $option_none_value значение пустого элемента
+ * @return string                    html-код выпадающего списка
+ */
+function render_dropdown( $choices = [], $selected = [], $atts = [], $show_option_none = '-', $option_none_value = '' ) {
+	$html = '';
+	if ( is_array( $choices ) && ! empty( $choices ) ) {
+		if ( ! is_array( $selected ) ) {
+			$selected = [ $selected ];
 		}
+		$atts = array_merge( [
+			'data-selected' => ( empty( $selected ) ) ? '[]' : wp_json_encode( $selected ),
+		], $atts );
+		$html .= '<select ' . render_atts( $atts ) . ' >';
+		if ( $show_option_none ) {
+			$html .= sprintf( '<option value="%1$s">%2$s</option>', esc_attr( $option_none_value ), $show_option_none );
+		}
+		foreach ( $choices as $value => $label ) {
+			$html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', $value, selected( true, in_array( $value, $selected ), false ), $label );
+		}
+		$html .= '</select>';
 	}
-	return ( $args[ 'container' ] ) ? "\n<style>\n" . $css . "\n</style>\n" : $css;
-}
-
-
-/**
- * Удаление размера изображения из url вложения
- * @param    string   $url   url изображения, который нужно очистить
- * @return   string          очищенный url
- * */
-function removing_image_size_from_url( $url = '' ) {
-	return preg_replace( '~-[0-9]+x[0-9]+(?=\..{2,6})~', '', $url );
-}
-
-
-/**
- * Проверяет можно ли выврдить секцию главной страницы
- * @param    array    $section    параметры секции
- * @return   bool                 результат проверки
- * */
-function is_home_section_valid( $section = [] ) {
-	return is_array( $section )
-		&& array_key_exists( 'slug', $section )
-		&& ! empty( $section[ 'slug' ] )
-		&& array_key_exists( 'title', $section )
-		&& ! empty( $section[ 'title' ] )
-		&& array_key_exists( 'type', $section )
-		&& ! empty( $section[ 'type' ] );
+	return $html;
 }
 
 
@@ -176,12 +132,52 @@ function is_home_section_valid( $section = [] ) {
  * @param  array  $atts  ассоциативный массив аттрибут=>значение
  * @return string        html-код
  */
-function render_atts( $atts = [] ) {
+function render_atts( $atts ) {
 	$html = '';
-	if ( is_array( $atts ) && ! empty( $atts ) ) {
+	if ( ! empty( $atts ) ) {
 		foreach ( $atts as $key => $value ) {
 			$html .= ' ' . $key . '="' . $value . '"';
 		}
 	}
 	return $html;
+}
+
+
+/**
+ * Создаёт массив для использования в $wp_customizer -> select
+ * @return   array      массив категориий term_id=>name
+ * */
+function get_taxonomy_choices( $taxonomy = 'category' ) {
+	$result = [];
+	$categories = get_categories( [
+		'taxonomy'     => $taxonomy,
+		'type'         => 'post',
+		'child_of'     => 0,
+		'parent'       => '',
+		'orderby'      => 'name',
+		'order'        => 'ASC',
+		'hide_empty'   => 0,
+		'hierarchical' => 1,
+		'exclude'      => '',
+		'include'      => '',
+		'number'       => 0,
+		'pad_counts'   => false,
+	] );
+	if ( is_array( $categories ) && ! empty( $categories ) ) {
+		foreach ( $categories as $category ) {
+			$result[ $category->term_id ] = esc_html( apply_filters( 'single_cat_title', $category->name ) );
+		}
+	}
+	return $result;
+}
+
+
+/**
+ *  Определяет есть ли дочернее меню у переданного пункта
+ */
+function is_nav_has_sub_menu( $item_id, $items ) {
+	foreach( $items as $item ) {
+		if( $item->menu_item_parent && $item->menu_item_parent == $item_id ) return true;
+	}
+	return false;
 }

@@ -5,9 +5,16 @@
 
 	ul.nav__list.list#nav-list
 		li.menu-item.current-menu-item: a.active-menu( href="home.html" ) Главная
-		li.menu-item: a(href="page.html") Постоянная странциа
+		li.menu-item.has-sub-menu
+			a(href="page.html") Постоянная странциа
+			ul.sub-menu
+				li.menu-item: a(href="page.html") Постоянная странциа 1
+				li.menu-item: a(href="page.html") Постоянная странциа 2
+				li.menu-item: a(href="page.html") Постоянная странциа 3
+				li.menu-item: a(href="page.html") Постоянная странциа 4
+				li.menu-item: a(href="page.html") Постоянная странциа 5
 		li.menu-item: a(href="404.html") Страница 404
 		li.menu-item: a(href="search.html") Результаты поиска
 		li.menu-item: a(href="archive.html") Блог
 		
-	button.btn.btn-withicon( data-toggle='nav' ) Открыть меню
+	button.burger.btn.btn-withicon( data-toggle='nav' ) Открыть меню

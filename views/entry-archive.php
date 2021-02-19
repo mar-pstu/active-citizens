@@ -14,12 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; };
 	<div class="row">
 		<div class="col-xs-12 col-sm-4">
 			<a class="entry__thumbnail thumbnail" href="<?php the_permalink(); ?>">
-				<img
-					class="wp-lazy-thumbnail lazy"
-					src="#"
-					data-src="<?php echo has_post_thumbnail( get_the_ID() ) ? get_the_post_thumbnail_url( get_the_ID(), 'medium' ) : get_theme_file_uri( 'images/default-medium.jpg' ); ?>"
-					alt="<?php the_title_attribute(); ?>"
-				/>
+				<?php the_post_thumbnail( 'thumbnail', [] ); ?>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-8">

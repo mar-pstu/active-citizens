@@ -24,9 +24,9 @@ if (
 	$post = $page_on_front;
 	setup_postdata( $post );
 	include get_theme_file_path( 'views/container-before.php' );
-	include get_theme_file_path( 'views/content-before.php' );
+	do_action( 'template_content_before' );
 	the_content();
-	include get_theme_file_path( 'views/content-before.php' );
+	do_action( 'template_content_after' );
 	include get_theme_file_path( 'views/container-after.php' );
 	wp_reset_postdata();
 
@@ -51,19 +51,12 @@ if (
 
 		// выводим архив
 		include get_theme_file_path( 'views/container-before.php' );
-		include get_theme_file_path( 'views/content-before.php' );
 		get_template_part( 'parts/pageheader', 'archive' );
 		get_template_part( 'parts/archive' );
-		include get_theme_file_path( 'views/content-after.php' );
 		include get_theme_file_path( 'views/container-after.php' );
 
 	}
 
-}
-
-
-if ( is_active_sidebar( 'basement' ) ) {
-	get_sidebar( 'basement' );
 }
 
 

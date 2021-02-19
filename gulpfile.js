@@ -31,6 +31,15 @@ gulp.task( 'public_scripts', function() {
 );
 
 
+gulp.task( 'customizer_scripts', function() {
+	return gulp.src( './src/scripts/customizer-preview/*.js' )
+		.pipe( plumber() )
+		.pipe( concat( 'customizer-preview.js') )
+		.pipe( gulp.dest( './scripts/' ) );
+	}
+);
+
+
 gulp.task( 'fonts', function () {
 	return gulp.src( './src/fonts/*.*' )
 		.pipe( gulp.dest( './fonts/' ) );
@@ -147,7 +156,7 @@ gulp.task( 'scripts', gulp.series( 'public_scripts', 'other_scripts', 'minscript
 gulp.task( 'watch', function () {
 	gulp.watch( './src/styles/**/*.scss',                 gulp.series( 'styles') );
 	gulp.watch( './src/views/**/*.pug',                   gulp.series( 'html', 'index' ) );
-	gulp.watch( './src/scripts/**/*.js',                  gulp.series( 'scripts', 'public_scripts' ) );
+	gulp.watch( './src/scripts/**/*.js',                  gulp.series( 'scripts', 'public_scripts', 'customizer_scripts' ) );
 	gulp.watch( './src/images/**/*.{png,jpg,svg,gif}',    gulp.series( 'images' ) );
 	gulp.watch( './src/userfiles/**/*.{png,jpg,svg,gif}', gulp.series( 'userfiles' ) );
 	gulp.watch( './src/fonts/**/*.*',                     gulp.series( 'fonts' ) );
@@ -156,6 +165,6 @@ gulp.task( 'watch', function () {
 
 
 gulp.task( 'default', gulp.series(
-	gulp.parallel( 'html', 'index', 'styles', 'scripts', 'images', 'userfiles', 'fonts', 'public_scripts' ),
+	gulp.parallel( 'html', 'index', 'styles', 'scripts', 'images', 'userfiles', 'fonts', 'public_scripts', 'customizer_scripts' ),
 	gulp.parallel( 'watch', 'server' )
 ) );

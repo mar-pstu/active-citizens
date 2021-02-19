@@ -18,22 +18,35 @@ function setup_default_mods( $old_name ) {
 	}
 	// update_option( "theme_mods_$theme_slug", array_merge( [
 	update_option( "theme_mods_$theme_slug", [
-
-		// дополнительные скрипты
+		
+		// Дополнительные скрипты
 		'additionalscriptsafterhead' => '',
 		'additionalscriptsafterbody' => '',
 
-		// главная страница
-		'homesections' => [],
-		'homesectionscount' => 0,
-
-		// страница ошибки 404
-		'error404title' => __( 'Ошибка 404', PSTUCTVSTZS_TEXTDOMAIN ),
-		'error404description' => '',
-		'error404logosrc' => get_theme_file_uri( 'images/error404.svg' ),
+		// шапка сайта
+		'headersearchformflag'       => true,
+		'headersocialsflag'          => true,
 
 		// подвал сайта
-		'footersocials' => []
+		'footercopyrightname'        => get_bloginfo( 'name', 'raw' ),
+
+		// социальные сети
+		'socialslinkedinurl'         => '',
+		'socialstwitterurl'          => '',
+		'socialsinstagramurl'        => '',
+		'socialsfacebookurl'         => '',
+		'socialsyoutubeurl'          => '',
+
+		// страница 404
+		'error404title'              => __( 'Ошибка 404', PSTUCTVSTZS_TEXTDOMAIN ),
+		'error404description'        => '',
+		'error404logosrc'            => get_theme_file_uri( 'images/error404.svg' ),
+
+		// колонка (сайдбар)
+		'columnside'                 => 'left',
+
+		// главная страница
+		'homesections'               => [],
 
 	] );
 	// ], $mods ) );

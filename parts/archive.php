@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; };
 
 if ( have_posts() ) {
 
-	include get_theme_file_path( 'views/archive-before.php' );
+	do_action( 'template_archive_list_before' );
 
 	while ( have_posts() ) {
 
@@ -19,7 +19,7 @@ if ( have_posts() ) {
 		
 	}
 
-	include get_theme_file_path( 'views/archive-after.php' );
+	do_action( 'template_archive_list_after' );
 
 	the_posts_pagination( [
 		'show_all'     => false, // показаны все страницы участвующие в пагинации
@@ -32,5 +32,9 @@ if ( have_posts() ) {
 		'add_fragment' => '',     // Текст который добавиться ко всем ссылкам.
 		'screen_reader_text' => __( 'Posts navigation' ),
 	] );
+
+} else {
+
+	do_action( 'template_archive_not_found' );
 
 }

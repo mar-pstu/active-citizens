@@ -39,7 +39,7 @@ $logo_src = esc_url_raw( get_theme_mod( 'error404logosrc' ) );
 					<h1><?php echo $title; ?></h1>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $title ) ) : ?>
+				<?php if ( ! empty( $description ) ) : ?>
 					<div class="description"><?php echo $description; ?></div>
 				<?php endif; ?>
 
@@ -53,11 +53,6 @@ $logo_src = esc_url_raw( get_theme_mod( 'error404logosrc' ) );
 
 
 <?php
-
-
-if ( is_active_sidebar( 'basement' ) ) {
-	get_sidebar( 'basement' );
-}
 
 
 get_footer();

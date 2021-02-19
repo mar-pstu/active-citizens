@@ -1,7 +1,7 @@
 <?php
 
 
-namespace vstup;
+namespace pstuctvstzs;
 
 
 if ( ! defined( 'ABSPATH' ) ) { exit; };

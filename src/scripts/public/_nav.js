@@ -5,6 +5,7 @@
 		var $mobilenav = jQuery( '#mobilenav' );
 		var $toggle = jQuery( '[data-toggle=nav]' );
 		var $body = jQuery( 'body' );
+		var $hasSubMenu = jQuery( '#nav .has-sub-menu' );
 
 		if ( typeof $body.attr( 'data-mobilenav' ) == typeof undefined && $body.attr( 'data-mobilenav' ) == false ) {
 			$body.attr( 'data-mobilenav', 'inactive' );
@@ -23,7 +24,16 @@
 			}
 		}
 
+		function OpenSubMenu() {
+			jQuery( this ).addClass( 'active' ).find( '.sub-menu' ).slideDown( 200 );
+		}
+
+		function CloseSubMenu() {
+			jQuery( this ).removeClass( 'active' ).find( '.sub-menu' ).slideUp( 200 );
+		}
+
 		$toggle.on( 'click', Toggle );
+		$hasSubMenu.hover( OpenSubMenu, CloseSubMenu );
 
 	} );
 

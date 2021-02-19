@@ -41,4 +41,7 @@ function add_content_lazyload_images( $content ) {
 	}
 	return implode( "", $result );
 }
+
 add_filter( 'the_content', 'pstuctvstzs\add_content_lazyload_images', 10, 1 );
+
+add_filter( 'post_thumbnail_html', 'pstuctvstzs\add_content_lazyload_images', 10, 5 );

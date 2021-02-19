@@ -8,7 +8,7 @@
 
 	&__copyright {
 		text-align: center;
-		@include min-width( $screen-sm ) {
+		@include min-width( $screen-md ) {
 			text-align: left;
 		}
 	}
@@ -16,7 +16,7 @@
 	&__developer {
 		text-align: center;
 		color: #fff;
-		@include min-width( $screen-sm ) {
+		@include min-width( $screen-md ) {
 			text-align: right;
 		}
 	}
