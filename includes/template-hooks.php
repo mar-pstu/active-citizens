@@ -69,7 +69,7 @@ add_action( 'template_search_list_after', 'pstuctvstzs\get_entries_list_after', 
 
 
 /**
- * 
+ * Добавляет текст если посты не найдены
  * */
 function get_entries_not_found() {
 	_e( 'К сожалению, по вашему запросу ничего не найдено.', PSTUCTVSTZS_TEXTDOMAIN );

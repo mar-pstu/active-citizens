@@ -29,7 +29,13 @@ get_template_part( 'includes/menus' );
 get_template_part( 'includes/sidebars' );
 
 if ( function_exists( 'pll_register_string' ) && function_exists( 'pll__' ) ) {
-	//
+
+	// регистрация строк для перевода
+	get_template_part( 'pll/register-strings' );
+
+	// перевод настроект темы
+	get_template_part( 'pll/translate-mod' );
+
 }
 
 
